@@ -62,6 +62,12 @@ nextRef.addEventListener("click", () => {
   toggleAudio();
 });
 
+progContainerRef.addEventListener("click", setProgressBar);
+
+function setProgressBar(e) {
+  musicRef.currentTime = (e.offsetX / this.clientWidth) * musicRef.duration;
+}
+
 function updateProgress(e) {
   if (isPlaying) {
     calculateTiming(durationRef, e, "duration");
