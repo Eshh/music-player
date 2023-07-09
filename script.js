@@ -3,9 +3,13 @@ const prevRef = document.getElementById("prev");
 const nextRef = document.getElementById("next");
 const playRef = document.getElementById("play");
 
+const progContainerRef = document.getElementById("progress-container");
+const progressRef = document.getElementById("progress");
+
 const artistRef = document.getElementById("artist");
 const titleRef = document.getElementById("title");
 const imgRef = document.querySelector("img");
+const durationRef = document.getElementById("duration");
 
 const musicArray = [
   {
@@ -56,6 +60,15 @@ nextRef.addEventListener("click", () => {
   isPlaying = false;
   toggleAudio();
 });
+
+function updateProgress(e) {
+  if (isPlaying) {
+    const { duration, currentTime } = e.srcElement;
+    durationRef.textContent = duration;
+    progressRef.style.width = `${(currentTime / duration) * 100}%`;
+  }
+}
+musicRef.addEventListener("timeupdate", updateProgress);
 
 function changeMusic(song) {
   titleRef.textContent = song.title;
