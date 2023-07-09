@@ -10,6 +10,7 @@ const artistRef = document.getElementById("artist");
 const titleRef = document.getElementById("title");
 const imgRef = document.querySelector("img");
 const durationRef = document.getElementById("duration");
+const currentTimeRef = document.getElementById("current-time");
 
 const musicArray = [
   {
@@ -63,10 +64,21 @@ nextRef.addEventListener("click", () => {
 
 function updateProgress(e) {
   if (isPlaying) {
-    const { duration, currentTime } = e.srcElement;
-    durationRef.textContent = duration;
-    progressRef.style.width = `${(currentTime / duration) * 100}%`;
+    calculateTiming(durationRef, e, "duration");
+    calculateTiming(currentTimeRef, e, "currentTime");
   }
+}
+
+function calculateTiming(ref, e, type) {
+  const { duration, currentTime } = e.srcElement;
+  let temp = type == "duration" ? duration : currentTime;
+  let seconds = Math.floor(temp % 60);
+  if (!!seconds) {
+    ref.textContent = `${Math.floor(temp / 60)}:${
+      seconds < 10 ? `0${seconds}` : seconds
+    }`;
+  }
+  progressRef.style.width = `${(currentTime / duration) * 100}%`;
 }
 musicRef.addEventListener("timeupdate", updateProgress);
 
