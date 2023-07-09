@@ -11,19 +11,34 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
 }
 
-
+.player-container {
+  height: 500px;
+  width: 400px;
+  background-color: #e4e9ee;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px 5px rgba(0, 0, 0, 0.4);
+  margin-top: 4%;
+}
 
 .img-container {
-
+  height: 300px;
+  width: 300px;
   position: relative;
   top: -50px;
   left: 50px;
 }
 
+.img-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.4);
+}
 
 h2 {
   font-size: 25px;
@@ -76,10 +91,13 @@ h3 {
   font-size: 30px;
   color: rgb(129, 129, 129);
   margin-right: 30px;
-
+  cursor: pointer;
+  user-select: none;
 }
 
-
+.fas:hover {
+  color: rgba(0, 0, 0);
+}
 
 .main-button {
   font-size: 40px;
@@ -89,10 +107,13 @@ h3 {
 
 /* Media Query: iPhone (Vertical) */
 @media screen and (max-width: 376px) {
-
-
+  .player-container {
+    width: 95vw;
+    height: 95vh;
+    margin: 0;
+  }
   .img-container {
-    left: 29px;
+    left: 12px;
   }
 
   h2 {
