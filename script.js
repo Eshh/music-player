@@ -87,6 +87,12 @@ function calculateTiming(ref, e, type) {
   progressRef.style.width = `${(currentTime / duration) * 100}%`;
 }
 musicRef.addEventListener("timeupdate", updateProgress);
+musicRef.addEventListener("ended", () => {
+  songIndex = songIndex == musicArray.length - 1 ? 0 : songIndex + 1;
+  changeMusic(musicArray[songIndex]);
+  isPlaying = false;
+  toggleAudio();
+});
 
 function changeMusic(song) {
   titleRef.textContent = song.title;
